@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Equipos</title>
+</head>
+
+<body>
+
+<h1>Lista de Equipos</h1>
+
+<!--Agregamos el buscador-->
+
+<!--th:action="@{/mascotas}"  = esto significa cuando envíe este formulario, manda la petición a /mascotas-->
+<form th:action="@{/equipo}" method="get">
+
+    <!--Campo donde escribiremos la busqueda-->
+    <input type="text"
+           name="valor"
+           placeholder="Ingrese búsqueda..."
+           th:value="${valor}">
+
+    <button type="submit">Buscar</button>
+
+</form>
+
+<br>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Tipo/th>
+        <th>Código Activo</th>
+        <th>Fecha Adquisición</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="equipo : ${equipo}">
+
+        <!--mostramos los datos que queremos-->
+        <td th:text="${equipo.nombre}"></td>
+        <td th:text="${equipo.tipo}"></td>
+        <td th:text="${equipo.codigo}"></td>
+        <td th:text="${equipo.fecha}"></td>
+
+    </tr>
+
+    <a th:href="@{/nuevo-equipo}">Registrar nuevo equipo</a>
+
+    </tbody>
+
+</table>
+
+</body>
+
+</html>
